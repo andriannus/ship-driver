@@ -1,0 +1,30 @@
+.Sidebar {
+  @apply hidden md:block bg-white w-56;
+}
+
+.List {
+  @apply w-full;
+
+  &-item {
+    @apply cursor-pointer text-sm transition duration-300;
+
+    &Content {
+      @apply flex h-full items-center outline-none px-bs py-sm w-full;
+
+      &:focus,
+      &:hover {
+        @apply border-0 text-ruby-500;
+      }
+
+      &--active {
+        @apply font-bold text-ruby-500;
+
+        box-shadow: inset 4px 0 0 0 theme("backgroundColor.ruby.500");
+      }
+
+      > * {
+        @apply mr-sm;
+      }
+    }
+  }
+}
