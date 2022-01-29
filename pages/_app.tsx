@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import { config, library } from "@fortawesome/fontawesome-svg-core";
 import {
   faBars,
   faCalendarAlt,
@@ -10,8 +10,10 @@ import {
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import "@/styles/globals.scss";
 
+config.autoAddCss = false;
 library.add(
   faBars,
   faCalendarAlt,
