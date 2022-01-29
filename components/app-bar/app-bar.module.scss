@@ -1,0 +1,33 @@
+.AppBar {
+  @apply bg-white flex h-16 items-center justify-between p-bs w-full;
+
+  &-bars {
+    @apply h-8 md:hidden rounded-full text-gray-400 w-8;
+
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+      @apply bg-gray-300;
+    }
+  }
+
+  &-brand {
+    @apply flex flex-grow h-7 items-center ml-sm md:ml-0 max-h-7 select-none;
+
+    > * {
+      @apply h-full;
+    }
+
+    &Text {
+      @apply font-bold italic leading-7 ml-xs text-ruby-500 text-2xl;
+    }
+  }
+
+  &-action {
+    @apply flex items-center justify-center;
+
+    &Text {
+      @apply hidden md:block text-sm;
+    }
+  }
+}
