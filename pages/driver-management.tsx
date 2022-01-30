@@ -37,18 +37,25 @@ const DriverManagement: NextPage = () => {
     router.isReady && paginateDriver(router.query.page as string);
   }, [router.query.page]);
 
+  useEffect(() => {
+    router.isReady && paginateDriver(router.query.page as string, searchValue);
+  }, [searchValue]);
+
   function handleSearchChange(event: ChangeEvent<HTMLInputElement>): void {
     setSearchValue(event.target.value);
-    paginateDriver(router.query.page as string, event.target.value);
   }
 
   function initializePage() {
-    const { page = "" } = router.query;
+    const { page = "", search } = router.query;
     const validPage = page || "1";
 
     if (!page) {
       router.replace({ query: { page: validPage } });
-      paginateDriver(validPage as string);
+      return;
+    }
+
+    if (search) {
+      setSearchValue(search as string);
       return;
     }
 
@@ -56,7 +63,7 @@ const DriverManagement: NextPage = () => {
   }
 
   function paginateDriver(page = "1", search = ""): void {
-    router.push({ query: { page } });
+    router.push({ query: { page, search } });
 
     if (ls.isExist(SHP_USERS)) {
       getPaginatedDriver(page, search);
@@ -77,15 +84,8 @@ const DriverManagement: NextPage = () => {
         QUERY_PARAMS,
       );
 
-      let validDrivers = [...Data.results];
-
-      if (!!search) {
-        validDrivers = Data.results.filter((driver) => {
-          return driver.name.first.toLowerCase().includes(search.toLowerCase());
-        });
-      }
-
-      const paginatedDriver = paginate(validDrivers, parseInt(page));
+      const drivers = searchDriver(Data.results, search);
+      const paginatedDriver = paginate(drivers, parseInt(page));
 
       setPaginatedDriver(paginatedDriver);
       ls.set(SHP_USERS, Data.results);
@@ -98,19 +98,26 @@ const DriverManagement: NextPage = () => {
 
   function getPaginatedDriver(page: string, search = ""): void {
     const results = ls.get<RandomUserData[]>(SHP_USERS);
+    const drivers = searchDriver(results, search);
+    const paginatedDriver = paginate(drivers, parseInt(page));
 
-    let validDrivers = [...results];
+    setPaginatedDriver(paginatedDriver);
+    setDataStatus(true);
+  }
+
+  function searchDriver(
+    drivers: RandomUserData[],
+    search: string,
+  ): RandomUserData[] {
+    let validDrivers = [...drivers];
 
     if (!!search) {
-      validDrivers = results.filter((driver) => {
+      validDrivers = drivers.filter((driver) => {
         return driver.name.first.toLowerCase().includes(search.toLowerCase());
       });
     }
 
-    const paginatedDriver = paginate(validDrivers, parseInt(page));
-
-    setPaginatedDriver(paginatedDriver);
-    setDataStatus(true);
+    return validDrivers;
   }
 
   return (
