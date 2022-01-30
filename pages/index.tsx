@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
+import { Banner } from "@/components/banner";
 import { DefaultLayout } from "@/layouts/default";
 
 const Home: NextPage = () => {
@@ -12,7 +13,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <p>Hello World</p>
+      <>
+        <Banner title="Home" subtitle="Welcome to Dashboard." />
+      </>
     </DefaultLayout>
   );
 };
