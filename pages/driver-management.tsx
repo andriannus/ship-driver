@@ -13,6 +13,7 @@ import { useApiInvoker } from "@/hooks/api-invoker";
 import { useLocalStorage } from "@/hooks/local-storage";
 import { DefaultLayout } from "@/layouts/default";
 import { RandomUserData, RandomUserResponse } from "@/models/random-user.model";
+import { transformToDefaultFormat } from "@/utils/date";
 import { paginate, PaginatedData } from "@/utils/paginate";
 
 import driverStyles from "@/styles/driver-management.module.scss";
@@ -176,7 +177,9 @@ const DriverManagement: NextPage = () => {
                             </p>
 
                             <span className={driverStyles["List-itemSubtitle"]}>
-                              {driver.dob.date}
+                              {transformToDefaultFormat(
+                                new Date(driver.dob.date),
+                              )}
                             </span>
                           </li>
                         </ul>
