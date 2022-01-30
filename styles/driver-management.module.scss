@@ -63,7 +63,7 @@
     }
 
     &:disabled {
-      @apply opacity-50 shadow-none text-gray-700;
+      @apply cursor-not-allowed opacity-50 shadow-none text-gray-700;
     }
 
     &:not(:last-child) {
