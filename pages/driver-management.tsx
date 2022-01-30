@@ -33,6 +33,10 @@ const DriverManagement: NextPage = () => {
     router.isReady && initializePage();
   }, [router.isReady]);
 
+  useEffect(() => {
+    router.isReady && paginateDriver(router.query.page as string);
+  }, [router.query.page]);
+
   function handleSearchChange(event: ChangeEvent<HTMLInputElement>): void {
     setSearchValue(event.target.value);
     paginateDriver(router.query.page as string, event.target.value);
@@ -160,11 +164,13 @@ const DriverManagement: NextPage = () => {
                   <div key={index} className={driverStyles["Grid"]}>
                     <Card driverId={driver.login.salt.toUpperCase()}>
                       <div className={driverStyles["Driver-detail"]}>
-                        <FontAwesomeIcon
-                          className="lg:mb-md text-gray-400"
-                          icon="user-circle"
-                          size="4x"
-                        />
+                        <div className={driverStyles["Picture"]}>
+                          <img
+                            src={driver.picture.medium}
+                            loading="lazy"
+                            alt={driver.name.first}
+                          />
+                        </div>
 
                         <ul className={driverStyles["List"]}>
                           <li className={driverStyles["List-item"]}>
@@ -228,11 +234,7 @@ const DriverManagement: NextPage = () => {
                   paginateDriver(paginatedDriver.meta.prevPage?.toString())
                 }
               >
-                <FontAwesomeIcon
-                  className={driverStyles["Pagination-icon"]}
-                  icon="chevron-left"
-                />
-
+                <FontAwesomeIcon icon="chevron-left" />
                 <span className="ml-xs">Previous</span>
               </button>
 
@@ -244,11 +246,7 @@ const DriverManagement: NextPage = () => {
                 }
               >
                 <span className="mr-xs">Next</span>
-
-                <FontAwesomeIcon
-                  className={driverStyles["Pagination-icon"]}
-                  icon="chevron-right"
-                />
+                <FontAwesomeIcon icon="chevron-right" />
               </button>
             </div>
           </>

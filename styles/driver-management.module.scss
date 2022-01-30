@@ -10,7 +10,7 @@
   min-width: theme("spacing.56");
 
   &:not(:last-child) {
-    @apply mb-bs lg:mr-bs;
+    @apply mb-bs lg:mr-md;
   }
 }
 
@@ -50,7 +50,8 @@
   @apply flex items-center justify-center pt-sm;
 
   &-button {
-    @apply bg-white outline-none p-2xs rounded-2xs text-sm transition-all duration-100;
+    @apply bg-white outline-none p-2xs rounded-2xs text-ruby-500 text-sm;
+    @apply transition-all duration-100;
 
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 
@@ -70,10 +71,13 @@
       @apply mr-bs;
     }
   }
+}
 
-  &-icon {
-    @apply text-ruby-500;
-  }
+.Picture {
+  @apply bg-gray-400 mb-bs overflow-hidden rounded-full;
+
+  height: 64px;
+  width: 64px;
 }
 
 .Search {
