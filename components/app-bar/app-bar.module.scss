@@ -1,5 +1,5 @@
 .AppBar {
-  @apply bg-white flex h-16 items-center justify-between p-bs w-full;
+  @apply bg-white flex h-16 items-center justify-between p-bs sticky top-0 w-full;
 
   &-bars {
     @apply h-8 md:hidden rounded-full text-gray-400 w-8;
