@@ -50,8 +50,8 @@ const DriverManagement: NextPage = () => {
         <div className={driverStyles["Grids"]}>
           {[1, 2, 3, 4, 5].map((driver, index) => {
             return (
-              <div className={driverStyles["Grid"]}>
-                <Card key={index} driverId={`${index}`}>
+              <div key={index} className={driverStyles["Grid"]}>
+                <Card driverId={`${index}`}>
                   <div className={driverStyles["Driver-detail"]}>
                     <FontAwesomeIcon
                       className="lg:mb-md text-gray-400"
@@ -105,6 +105,26 @@ const DriverManagement: NextPage = () => {
               </div>
             );
           })}
+        </div>
+
+        <div className={driverStyles["Pagination"]}>
+          <button className={driverStyles["Pagination-button"]}>
+            <FontAwesomeIcon
+              className={driverStyles["Pagination-icon"]}
+              icon="chevron-left"
+            />
+
+            <span className="ml-xs">Previous</span>
+          </button>
+
+          <button className={driverStyles["Pagination-button"]}>
+            <span className="mr-xs">Next</span>
+
+            <FontAwesomeIcon
+              className={driverStyles["Pagination-icon"]}
+              icon="chevron-right"
+            />
+          </button>
         </div>
       </>
     </DefaultLayout>

@@ -3,6 +3,8 @@ import { config, library } from "@fortawesome/fontawesome-svg-core";
 import {
   faBars,
   faCalendarAlt,
+  faChevronLeft,
+  faChevronRight,
   faEllipsisH,
   faHome,
   faPlus,
@@ -17,6 +19,8 @@ config.autoAddCss = false;
 library.add(
   faBars,
   faCalendarAlt,
+  faChevronLeft,
+  faChevronRight,
   faEllipsisH,
   faHome,
   faPlus,

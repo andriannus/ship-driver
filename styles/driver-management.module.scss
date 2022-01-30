@@ -1,5 +1,5 @@
 .Grids {
-  @apply flex flex-col lg:flex-row mt-bs overflow-scroll w-full;
+  @apply flex flex-col lg:flex-row flex-grow mt-bs overflow-scroll w-full;
 
   @media screen and (min-width: 1024px) {
     width: calc(100vw - 224px - 48px);
@@ -43,6 +43,36 @@
     &Title {
       @apply text-xs text-gray-500;
     }
+  }
+}
+
+.Pagination {
+  @apply flex items-center justify-center pt-sm;
+
+  &-button {
+    @apply bg-white outline-none p-2xs rounded-2xs text-sm transition-all duration-100;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+
+    &:active {
+      @apply shadow-none;
+    }
+
+    &:focus {
+      @apply bg-ruby-100;
+    }
+
+    &:disabled {
+      @apply opacity-50 shadow-none text-gray-700;
+    }
+
+    &:not(:last-child) {
+      @apply mr-bs;
+    }
+  }
+
+  &-icon {
+    @apply text-ruby-500;
   }
 }
 
