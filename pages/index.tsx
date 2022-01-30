@@ -1,30 +1,19 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import { AppBar } from "@/components/app-bar";
-import { Sidebar } from "@/components/sidebar";
-
-import homeStyles from "@/styles/home.module.scss";
+import { DefaultLayout } from "@/layouts/default";
 
 const Home: NextPage = () => {
   return (
-    <>
+    <DefaultLayout>
       <Head>
-        <title>Driver Management - Shipper</title>
-        <meta name="description" content="Driver Management - Shipper" />
+        <title>Home - Shipper</title>
+        <meta name="description" content="Home - Shipper" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <AppBar />
-
-      <div className={homeStyles["Container"]}>
-        <Sidebar />
-
-        <main className={homeStyles["Main"]}>
-          <p>Hello World</p>
-        </main>
-      </div>
-    </>
+      <p>Hello World</p>
+    </DefaultLayout>
   );
 };
 
