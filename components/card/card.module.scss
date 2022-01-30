@@ -1,0 +1,12 @@
+.Card {
+  @apply bg-white;
+
+  &-content {
+    @apply p-bs;
+  }
+
+  &-title {
+    @apply border-b border-gray-300 flex items-center justify-between p-bs;
+    @apply text-gray-400 text-xs;
+  }
+}
