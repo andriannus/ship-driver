@@ -1,6 +1,6 @@
 .Banner {
   @apply bg-white cursor-default flex flex-col lg:flex-row lg:items-center;
-  @apply justify-between p-bs select-none;
+  @apply justify-between p-bs rounded-xs select-none;
 
   &-content {
     @apply flex-grow mt-bs lg:mt-0 w-full lg:w-auto;
