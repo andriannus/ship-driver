@@ -1,0 +1,29 @@
+.Driver {
+  &-actions {
+    @apply flex flex-col lg:flex-row justify-end;
+  }
+}
+
+.Search {
+  @apply bg-gray-100 flex h-full mb-bs lg:mb-0 lg:mr-bs p-sm rounded-xs;
+
+  :first-child {
+    @apply mr-xs;
+  }
+
+  &-field {
+    width: calc(100% - 40px);
+  }
+
+  &-icon {
+    @apply h-md text-ruby-500 w-md;
+  }
+
+  &-input {
+    @apply bg-transparent outline-none text-sm leading-5 w-full;
+
+    &::placeholder {
+      @apply text-gray-700;
+    }
+  }
+}
