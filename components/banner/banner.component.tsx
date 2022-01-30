@@ -7,11 +7,17 @@ interface BannerProps {
   title: string;
 }
 
-const Banner: FC<BannerProps> = ({ subtitle, title }) => {
+const Banner: FC<BannerProps> = ({ children, ...props }) => {
   return (
     <div className={bannerStyles["Banner"]}>
-      <h1 className={bannerStyles["Banner-title"]}>{title}</h1>
-      <p className={bannerStyles["Banner-subtitle"]}>{subtitle}</p>
+      <div>
+        <h1 className={bannerStyles["Banner-title"]}>{props.title}</h1>
+        <p className={bannerStyles["Banner-subtitle"]}>{props.subtitle}</p>
+      </div>
+
+      {!!children && (
+        <div className={bannerStyles["Banner-content"]}>{children}</div>
+      )}
     </div>
   );
 };

@@ -1,8 +1,13 @@
 .Banner {
-  @apply bg-white cursor-default p-bs select-none;
+  @apply bg-white cursor-default flex flex-col lg:flex-row lg:items-center;
+  @apply justify-between p-bs select-none;
+
+  &-content {
+    @apply flex-grow mt-bs lg:mt-0 w-full lg:w-auto;
+  }
 
   &-title {
-    @apply uppercase font-semibold mb-2xs text-ruby-500 text-2xl leading-6;
+    @apply uppercase font-semibold mb-2xs text-ruby-500 text-xl leading-6;
   }
 
   &-subtitle {
