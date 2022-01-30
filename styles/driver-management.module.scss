@@ -1,6 +1,48 @@
+.Grids {
+  @apply flex flex-col lg:flex-row mt-bs overflow-scroll w-full;
+
+  @media screen and (min-width: 1024px) {
+    width: calc(100vw - 224px - 48px);
+  }
+}
+
+.Grid {
+  min-width: theme("spacing.56");
+
+  &:not(:last-child) {
+    @apply mb-bs lg:mr-bs;
+  }
+}
+
 .Driver {
   &-actions {
     @apply flex flex-col lg:flex-row justify-end;
+  }
+
+  &-detail {
+    @apply flex flex-row lg:flex-col;
+  }
+}
+
+.List {
+  @apply ml-bs lg:ml-0;
+
+  &-item {
+    &:not(:last-child) {
+      @apply mb-xs;
+    }
+
+    &--additional {
+      @apply hidden lg:block;
+    }
+
+    &Subtitle {
+      @apply text-sm;
+    }
+
+    &Title {
+      @apply text-xs text-gray-500;
+    }
   }
 }
 

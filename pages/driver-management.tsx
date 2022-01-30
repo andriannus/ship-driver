@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Banner } from "@/components/banner";
 import { Button } from "@/components/button";
+import { Card } from "@/components/card";
 import { DefaultLayout } from "@/layouts/default";
 
 import driverStyles from "@/styles/driver-management.module.scss";
@@ -45,6 +46,66 @@ const DriverManagement: NextPage = () => {
             </Button>
           </div>
         </Banner>
+
+        <div className={driverStyles["Grids"]}>
+          {[1, 2, 3, 4, 5].map((driver, index) => {
+            return (
+              <div className={driverStyles["Grid"]}>
+                <Card key={index} driverId={`${index}`}>
+                  <div className={driverStyles["Driver-detail"]}>
+                    <FontAwesomeIcon
+                      className="lg:mb-md text-gray-400"
+                      icon="user-circle"
+                      size="4x"
+                    />
+
+                    <ul className={driverStyles["List"]}>
+                      <li className={driverStyles["List-item"]}>
+                        <p className={driverStyles["List-itemTitle"]}>
+                          Nama Driver
+                        </p>
+
+                        <span className={driverStyles["List-itemSubtitle"]}>
+                          First Name, Last Name
+                        </span>
+                      </li>
+
+                      <li className={driverStyles["List-item"]}>
+                        <p className={driverStyles["List-itemTitle"]}>Phone</p>
+
+                        <span className={driverStyles["List-itemSubtitle"]}>
+                          Phone Number
+                        </span>
+                      </li>
+
+                      <li
+                        className={`${driverStyles["List-item"]} ${driverStyles["List-item--additional"]}`}
+                      >
+                        <p className={driverStyles["List-itemTitle"]}>Email</p>
+
+                        <span className={driverStyles["List-itemSubtitle"]}>
+                          Email Address
+                        </span>
+                      </li>
+
+                      <li
+                        className={`${driverStyles["List-item"]} ${driverStyles["List-item--additional"]}`}
+                      >
+                        <p className={driverStyles["List-itemTitle"]}>
+                          Date of Birth
+                        </p>
+
+                        <span className={driverStyles["List-itemSubtitle"]}>
+                          DD-MM-YYYY
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </Card>
+              </div>
+            );
+          })}
+        </div>
       </>
     </DefaultLayout>
   );
