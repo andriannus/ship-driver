@@ -5,7 +5,7 @@ export const SIDEBAR_MENUS = [
     text: "Home",
   },
   {
-    href: "/driver-management",
+    href: "/driver-management?page=1",
     icon: "user-circle",
     text: "Driver Management",
   },
