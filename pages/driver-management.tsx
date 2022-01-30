@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Banner } from "@/components/banner";
@@ -24,6 +24,7 @@ const DriverManagement: NextPage = () => {
   const router = useRouter();
 
   const [isDataReady, setDataStatus] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const [paginatedDriver, setPaginatedDriver] = useState<
     PaginatedData<RandomUserData>
   >({} as PaginatedData<RandomUserData>);
@@ -31,6 +32,11 @@ const DriverManagement: NextPage = () => {
   useEffect(() => {
     router.isReady && initializePage();
   }, [router.isReady]);
+
+  function handleSearchChange(event: ChangeEvent<HTMLInputElement>): void {
+    setSearchValue(event.target.value);
+    paginateDriver(router.query.page as string, event.target.value);
+  }
 
   function initializePage() {
     const { page = "" } = router.query;
@@ -45,18 +51,21 @@ const DriverManagement: NextPage = () => {
     paginateDriver(validPage as string);
   }
 
-  function paginateDriver(page: string = "1"): void {
+  function paginateDriver(page = "1", search = ""): void {
     router.push({ query: { page } });
 
     if (ls.isExist(SHP_USERS)) {
-      getPaginatedDriver(page);
+      getPaginatedDriver(page, search);
       return;
     }
 
-    fetchPaginatedDriver(page);
+    fetchPaginatedDriver(page, search);
   }
 
-  async function fetchPaginatedDriver(page: string): Promise<void> {
+  async function fetchPaginatedDriver(
+    page: string,
+    search = "",
+  ): Promise<void> {
     setDataStatus(false);
 
     try {
@@ -64,7 +73,15 @@ const DriverManagement: NextPage = () => {
         QUERY_PARAMS,
       );
 
-      const paginatedDriver = paginate(Data.results, parseInt(page));
+      let validDrivers = [...Data.results];
+
+      if (!!search) {
+        validDrivers = Data.results.filter((driver) => {
+          return driver.name.first.toLowerCase().includes(search.toLowerCase());
+        });
+      }
+
+      const paginatedDriver = paginate(validDrivers, parseInt(page));
 
       setPaginatedDriver(paginatedDriver);
       ls.set(SHP_USERS, Data.results);
@@ -75,9 +92,18 @@ const DriverManagement: NextPage = () => {
     }
   }
 
-  function getPaginatedDriver(page: string): void {
+  function getPaginatedDriver(page: string, search = ""): void {
     const results = ls.get<RandomUserData[]>(SHP_USERS);
-    const paginatedDriver = paginate(results, parseInt(page));
+
+    let validDrivers = [...results];
+
+    if (!!search) {
+      validDrivers = results.filter((driver) => {
+        return driver.name.first.toLowerCase().includes(search.toLowerCase());
+      });
+    }
+
+    const paginatedDriver = paginate(validDrivers, parseInt(page));
 
     setPaginatedDriver(paginatedDriver);
     setDataStatus(true);
@@ -110,6 +136,8 @@ const DriverManagement: NextPage = () => {
                   placeholder="Cari Driver"
                   title="Cari Driver"
                   type="text"
+                  value={searchValue}
+                  onInput={handleSearchChange}
                 />
               </div>
             </div>
@@ -121,7 +149,9 @@ const DriverManagement: NextPage = () => {
         </Banner>
 
         {!isDataReady ? (
-          <p>Loading...</p>
+          <p className="mt-bs text-xs">Loading...</p>
+        ) : paginatedDriver.data.length < 1 ? (
+          <p className="mt-bs text-xs">Data not found.</p>
         ) : (
           <>
             <div className={driverStyles["Grids"]}>
