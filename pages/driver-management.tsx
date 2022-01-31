@@ -127,6 +127,10 @@ const DriverManagement: NextPage = () => {
         <title>Driver Management - Shipper</title>
         <meta name="description" content="Driver Management - Shipper" />
         <link rel="icon" href="/favicon.ico" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
 
       <>

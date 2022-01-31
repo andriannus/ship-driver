@@ -46,7 +46,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["'Open Sans'", "sans-serif"],
+        sans: ["'Source Sans Pro'", "sans-serif"],
       },
       screens: {
         ...screens,
