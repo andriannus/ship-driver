@@ -23,6 +23,7 @@ const DriverManagement: NextPage = () => {
   const ls = useLocalStorage();
   const router = useRouter();
 
+  const [didSomethingWrong, setWrongStatus] = useState(false);
   const [isDataReady, setDataStatus] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [paginatedDriver, setPaginatedDriver] = useState<
@@ -90,7 +91,7 @@ const DriverManagement: NextPage = () => {
       setPaginatedDriver(paginatedDriver);
       ls.set(SHP_USERS, Data.results);
     } catch {
-      // state.didSomethingWrong = true;
+      setWrongStatus(true);
     } finally {
       setDataStatus(true);
     }
@@ -161,6 +162,8 @@ const DriverManagement: NextPage = () => {
 
         {!isDataReady ? (
           <p className="mt-bs text-xs">Loading...</p>
+        ) : didSomethingWrong ? (
+          <p className="mt-bs text-xs">Something wrong.</p>
         ) : paginatedDriver.data.length < 1 ? (
           <p className="mt-bs text-xs">Data not found.</p>
         ) : (
