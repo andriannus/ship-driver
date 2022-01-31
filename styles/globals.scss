@@ -13,6 +13,8 @@ html {
 .Menu {
   @apply w-full;
 
+  -webkit-tap-highlight-color: transparent;
+
   &-item {
     @apply cursor-pointer text-sm transition duration-300;
 

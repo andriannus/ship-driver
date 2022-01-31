@@ -7,7 +7,7 @@
 }
 
 .Grid {
-  min-width: theme("spacing.56");
+  min-width: 292px;
 
   &:not(:last-child) {
     @apply mb-bs lg:mr-md;
