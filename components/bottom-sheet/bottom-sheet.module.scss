@@ -1,0 +1,27 @@
+.BottomSheet {
+  @apply fixed flex h-screen justify-center left-0 top-0 w-screen z-20;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  &-container {
+    @apply fixed flex h-full items-end justify-end w-full;
+
+    max-width: theme("screens.mobile");
+  }
+
+  &-dialog {
+    @apply bg-white overflow-y-auto p-bs relative rounded-t-sm w-full;
+
+    max-height: 90vh;
+  }
+
+  &-close {
+    @apply absolute outline-none rounded-full transition duration-300;
+
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+      @apply bg-gray-300;
+    }
+  }
+}
