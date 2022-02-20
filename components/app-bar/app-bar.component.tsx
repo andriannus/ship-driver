@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC, useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -26,7 +27,12 @@ const AppBar: FC<{}> = () => {
         </button>
 
         <div className={appBarStyles["AppBar-brand"]}>
-          <img src="/images/logo.png" alt="Logo Shipper" />
+          <Image
+            src="/images/logo.png"
+            alt="Logo Shipper"
+            height={28}
+            width={28}
+          />
           <span className={appBarStyles["AppBar-brandText"]}>Shipper</span>
         </div>
 

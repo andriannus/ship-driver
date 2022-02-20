@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { ChangeEvent, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -179,10 +180,11 @@ const DriverManagement: NextPage = () => {
                     <Card driverId={driver.login.salt.toUpperCase()}>
                       <div className={driverStyles["Driver-detail"]}>
                         <div className={driverStyles["Picture"]}>
-                          <img
+                          <Image
                             src={driver.picture.medium}
-                            loading="lazy"
                             alt={driver.name.first}
+                            height={64}
+                            width={64}
                           />
                         </div>
 
